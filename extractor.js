@@ -4,12 +4,13 @@ const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 });
+strikes = 0;
 startExtract();
+
 function startExtract() {
 	new Promise((resolve, reject) => {
 		rl.question('Enter HTML Embed\n', (inputEmbed) => {
 			let httpsPos = inputEmbed.indexOf('https://');
-			console.log(httpsPos);
 			if (httpsPos > 0) {
 				console.log(
 					inputEmbed.substring(
@@ -17,8 +18,11 @@ function startExtract() {
 						inputEmbed.substring(httpsPos).indexOf('"') + httpsPos,
 					),
 				);
+				strikes = 0;
 			} else {
-				reject('bruh');
+				strikes++;
+				console.log('Strike ' + strikes);
+				if (strikes >= 2) reject('bruh');
 			}
 			resolve('bruh');
 		});
