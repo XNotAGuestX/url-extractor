@@ -24,7 +24,7 @@ function startExtract() {
 							.replace('/100/', '/800/'),
 					);
 				} else {
-					console.log(inputEmbed.replace('?size=1x', '?size=4x'));
+					console.log(inputEmbed.replace('?size=1x', '?size=8x'));
 				}
 				strikes = 0;
 			} else {
