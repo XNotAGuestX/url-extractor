@@ -1,10 +1,12 @@
-const readline = require('readline');
-
+// const readline = require('readline');
+// const clipboardy = require('clipboardy');
+import readline from 'readline';
+import clipboardy from 'clipboardy';
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 });
-strikes = 0;
+let strikes = 0;
 console.clear();
 startExtract();
 
@@ -13,19 +15,21 @@ function startExtract() {
 		rl.question('Enter HTML Embed\n', (inputEmbed) => {
 			let httpsPos = inputEmbed.indexOf('https://');
 			if (httpsPos > -1) {
+				let result;
 				console.clear();
 				if (inputEmbed.includes('"')) {
-					console.log(
-						inputEmbed
-							.substring(
-								httpsPos,
-								inputEmbed.substring(httpsPos).indexOf('"') + httpsPos,
-							)
-							.replace('/100/', '/800/'),
-					);
+					result = inputEmbed
+						.substring(
+							httpsPos,
+							inputEmbed.substring(httpsPos).indexOf('"') + httpsPos,
+						)
+						.replace('/100/', '/800/');
 				} else {
-					console.log(inputEmbed.replace('?size=1x', '?size=8x'));
+					result = inputEmbed.replace('?size=1x', '?size=8x');
 				}
+				console.log(result);
+				clipboardy.write(result);
+				console.log('Copied to clipboard');
 				strikes = 0;
 			} else {
 				strikes++;
