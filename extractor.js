@@ -13,10 +13,12 @@ function startExtract() {
 			let httpsPos = inputEmbed.indexOf('https://');
 			if (httpsPos > 0) {
 				console.log(
-					inputEmbed.substring(
-						httpsPos,
-						inputEmbed.substring(httpsPos).indexOf('"') + httpsPos,
-					),
+					inputEmbed
+						.substring(
+							httpsPos,
+							inputEmbed.substring(httpsPos).indexOf('"') + httpsPos,
+						)
+						.replace('100', '500'),
 				);
 				strikes = 0;
 			} else {
